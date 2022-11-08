@@ -1,0 +1,45 @@
+.coursecard-wrapper{
+    width:60%;
+    margin:2vw auto ;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border:1px solid #28a745;
+    border-radius: 2.5px;
+    padding:10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-align: center;
+    cursor: pointer;
+}
+.coursecard-title{
+    font-size: 1.75vw;
+    font-weight: 500;
+    color: #28a745;
+    margin:0px;
+    padding:0px;
+}
+.coursecard-desc{
+    font-size: 1.25vw;
+    font-weight: 400;
+    text-align: justify;
+    color:#2d2f31;
+}
+.card-button{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 10vw;
+    height: 2.5vw;
+    background-color: white;
+    color:#28a745;
+    border:1px solid #28a745;
+    border-radius: 5px;
+    font-size: 1.5vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card-button:hover{
+    background-color: #28a745;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
