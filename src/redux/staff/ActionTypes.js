@@ -12,3 +12,8 @@ export const SIGNUP_ERROR="SIGNUP_ERROR";
 export const PROFILE_LOADING="PROFILE_LOADING";
 export const PROFILE_SUCCESS="PROFILE_SUCCESS";
 export const PROFILE_ERROR="PROFILE_ERROR";
+
+//For Student List
+export const LIST_LOADING="LIST_LOADING";
+export const LIST_SUCCESS="LIST_SUCCESS";
+export const LIST_ERROR="LIST_ERROR";

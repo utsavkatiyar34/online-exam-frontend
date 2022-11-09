@@ -28,7 +28,7 @@ axios({
 }).then((response)=>{
  console.log(response.data)
  dispatch(signupSuccess());
- if(response.data.Email==email){
+ if(response.data.Email===email){
  alert("User registered succesfully.");
  }
 }).catch((error)=>{

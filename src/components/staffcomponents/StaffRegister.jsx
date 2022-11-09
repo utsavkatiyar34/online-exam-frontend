@@ -2,15 +2,46 @@ import React from 'react';
 import Staffnavbar from "./Staffnavbar";
 import '../styles/Forms.css';
 import { useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import { signupError, signupLoading, signupSuccess } from '../../redux/staff/Actions';
+import axios from 'axios';
 
 const StaffRegister = () => {
+  
   const[name, setName]=useState("");
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
   const[confirmpass,setConformpass]=useState("");
   const[contact,setContact]=useState("");
   const[designation,setDesignation]=useState("");
+
+  // const {error}=useSelector((state)=>state.signup);
+  const dispatch=useDispatch();
   //register function
+  let registerStaff =()=>{
+    dispatch(signupLoading());
+    axios({
+        method: "post",
+        url: 'http://localhost:8000/managerapi/staff/',
+        data:{
+          Name:name,
+          Email:email,
+          Designation:designation,
+          Password:password
+        }
+    }).then((response)=>{
+     console.log(response.data)
+     dispatch(signupSuccess());
+     if(response.data.Email===email){
+     alert("User registered succesfully.");
+     }
+    }).catch((error)=>{
+      dispatch(signupError());
+      let errmessage=error.response.data.Email;
+      alert("Error :"+errmessage);
+    })
+    }
+
   let handleRegister=()=>{
     //targetting elements to show alerts.
 let targetname=document.getElementById("name");
@@ -58,7 +89,7 @@ let emailcheck= /\S+@\S+\.\S+/;
       targetconfirmpass.value="⚠ Password and Confirm passsword should be same";
     }
     else{
-    alert("Success.");
+    registerStaff();
     }
   }
   let designations=["","Teacher","Supervisor"]
@@ -112,7 +143,7 @@ let emailcheck= /\S+@\S+\.\S+/;
           onChange={(event=>setConformpass(event.target.value))}
           onFocus={(e=>{e.target.className="form-input"
           e.target.value=""
-          e.target.type="text"})}
+          e.target.type="password"})}
           />
          <button className='form-button' onClick={handleRegister}>Register</button>
     </div>

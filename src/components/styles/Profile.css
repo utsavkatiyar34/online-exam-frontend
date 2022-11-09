@@ -72,3 +72,22 @@
     font-weight: 600;
     cursor: pointer;
 }
+.profile-button-disabled{
+   margin-top: 10px;
+   margin-bottom: 0px;
+   width: 7vw;
+   height: 1.8vw;
+   background-color: white;
+   color:grey;
+   border:1px solid grey;
+   border-radius: 2.5px;
+   font-size: 1vw;
+   margin-left: 1vw;
+   margin-right: 0px;
+}
+.profile-button-disabled:hover{
+   background-color: grey;
+   color: white;
+   font-weight: 600;
+   cursor: pointer;
+}

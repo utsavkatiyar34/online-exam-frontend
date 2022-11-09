@@ -1,4 +1,5 @@
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
+import { LIST_ERROR, LIST_LOADING, LIST_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS,
+   SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
 
 const initialState = {
     login: {
@@ -15,6 +16,11 @@ const initialState = {
       error: false,
       data: [],
     },
+    list:{
+      loading:false,
+      error:false,
+      data:[],
+    }
   };
 
 export const reducer = (state = initialState, action) => {
@@ -99,7 +105,7 @@ switch (action.type) {
           },
     };
 
-    case LOGIN_ERROR:
+    case PROFILE_ERROR:
         return{
             ...state,
             profile: { 
@@ -108,6 +114,38 @@ switch (action.type) {
              error:true,
             },
     }; 
+//Student List
+
+  case LIST_LOADING:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          loading: true,
+        },
+  };
+
+  case LIST_SUCCESS:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          loading: false,
+          error: false,
+          data: action.payload,
+        },
+  };
+
+  case LIST_ERROR:
+      return{
+          ...state,
+          list: { 
+           ...state.list,
+           loading:false,
+           error:true,
+          },
+  }; 
+   
     default:
         return { ...state };
     }

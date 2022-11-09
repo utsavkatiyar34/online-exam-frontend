@@ -1,4 +1,5 @@
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
+import { LIST_ERROR, LIST_LOADING, LIST_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, 
+  PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
 
 //For Signup
 export const signupLoading = () => {
@@ -57,5 +58,25 @@ export const loginLoading = () => {
   export const profileError = () =>{
     return {
         type: PROFILE_ERROR,
+    }
+  }
+
+  //To fetch list of all students
+  export const listLoading = () =>{
+    return {
+       type: LIST_LOADING,
+    }
+  };
+
+  export const listSuccess = (payload) =>{
+    return {
+       type: LIST_SUCCESS,
+       payload,
+    }
+  };
+
+  export const listError = () =>{
+    return {
+        type: LIST_ERROR,
     }
   }

@@ -3,6 +3,7 @@ import Staffnavbar from "./Staffnavbar"
 import '../styles/Profile.css'
 
 const Staffportal = () => {
+
   return (
     <>
        <Staffnavbar/>
