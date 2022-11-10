@@ -2,7 +2,7 @@ import React from 'react';
 import Staffnavbar from "./Staffnavbar";
 import '../styles/Forms.css';
 import { useState } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { signupError, signupLoading, signupSuccess } from '../../redux/staff/Actions';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ const StaffRegister = () => {
   const[confirmpass,setConformpass]=useState("");
   const[contact,setContact]=useState("");
   const[designation,setDesignation]=useState("");
-
+  
   // const {error}=useSelector((state)=>state.signup);
   const dispatch=useDispatch();
   //register function

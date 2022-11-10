@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
 import Staffnavbar from "./Staffnavbar";
 import '../styles/Forms.css';
+import { useDispatch } from 'react-redux';
+import { loginError, loginLoading, loginSuccess } from '../../redux/staff/Actions';
+import axios from 'axios';
 
 const Stafflogin = () => {
   
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
   const[confirmpass,setConformpass]=useState("");
+  const dispatch=useDispatch();
+
+  let login=()=>{
+    dispatch(loginLoading())
+        axios({
+          method:"post",
+          url: 'http://localhost:8000/managerapi/stafflogin/',
+          data:{Email:email,
+          Password:password}
+      }).then((response)=>{
+        console.log(response);
+        sessionStorage.setItem("staff_token",response.data)
+        dispatch(loginSuccess(response.data));
+      }).catch((error)=>{
+        dispatch(loginError());
+        let errmessage="Invalid credientials";
+        alert("Error :"+errmessage);
+      })
+  }
 
   let handleLogin=()=>{
       //targetting elements to show alerts.
@@ -39,7 +61,7 @@ const Stafflogin = () => {
       targetconfirmpass.value="⚠ Password and Confirm passsword should be same";
     }
     else{
-    alert("Success.");
+    login();
     }
   }
   return (

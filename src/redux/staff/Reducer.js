@@ -70,7 +70,7 @@ switch (action.type) {
             ...state.login,
             loading: false,
             error: false,
-            staff_token: action.payload.staff_token,
+            staff_token: action.payload,
           },
     };
 
