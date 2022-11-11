@@ -1,5 +1,5 @@
 import { LIST_ERROR, LIST_LOADING, LIST_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, 
-  PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
+  PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STAFF_LOGOUT } from "./ActionTypes";
 
 //For Signup
 export const signupLoading = () => {
@@ -78,5 +78,10 @@ export const loginLoading = () => {
   export const listError = () =>{
     return {
         type: LIST_ERROR,
+    }
+  }
+  export const staffLogout = () =>{
+    return {
+        type: STAFF_LOGOUT,
     }
   }

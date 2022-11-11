@@ -4,6 +4,8 @@ import '../styles/Forms.css';
 import { useDispatch } from 'react-redux';
 import { loginError, loginLoading, loginSuccess } from '../../redux/staff/Actions';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Stafflogin = () => {
   
@@ -11,7 +13,7 @@ const Stafflogin = () => {
   const[password,setPassword]=useState("");
   const[confirmpass,setConformpass]=useState("");
   const dispatch=useDispatch();
-
+  const navigate = useNavigate();
   let login=()=>{
     dispatch(loginLoading())
         axios({
@@ -20,9 +22,10 @@ const Stafflogin = () => {
           data:{Email:email,
           Password:password}
       }).then((response)=>{
-        console.log(response);
-        sessionStorage.setItem("staff_token",response.data)
+        sessionStorage.setItem("staff_token",JSON.stringify(response.data))
         dispatch(loginSuccess(response.data));
+        alert("Login successful.");
+        navigate('/staff/profile');
       }).catch((error)=>{
         dispatch(loginError());
         let errmessage="Invalid credientials";

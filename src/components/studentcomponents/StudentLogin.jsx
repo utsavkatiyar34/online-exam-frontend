@@ -1,14 +1,38 @@
 import React, { useState } from 'react'
 import Studentnavbar from './Studentnavbar'
 import '../styles/Forms.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginError, loginLoading, loginstudentSuccess} from '../../redux/student/Actions';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const StudentLogin = () => {
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
   const[confirmpass,setConformpass]=useState("");
-
+  const dispatch=useDispatch();
+  const navigate = useNavigate();
+  // let student_token=useSelector(state=>state.student.login.student_token);
 
   //login function
+  let login=()=>{
+    dispatch(loginLoading())
+      axios({
+          method:"post",
+          url: 'http://localhost:8000/managerapi/studentlogin/',
+          data:{Email:email,
+          Password:password}
+      }).then((response)=>{
+        sessionStorage.setItem("student_token",response.data)
+        dispatch(loginstudentSuccess(response.data));
+        alert("Login Successful")
+        navigate('/student/profile');
+      }).catch((error)=>{
+        dispatch(loginError());
+        let errmessage="Invalid credientials";
+        alert("Error :"+errmessage);
+      })
+  }
   let handleLogin=()=>{
   //targetting elements to show alerts.
   let targetemail=document.getElementById("email");
@@ -40,7 +64,7 @@ const StudentLogin = () => {
       targetconfirmpass.value="⚠ Password and Confirm passsword should be same";
     }
     else{
-    alert("Success.");
+    login();
     }
   }
   return (

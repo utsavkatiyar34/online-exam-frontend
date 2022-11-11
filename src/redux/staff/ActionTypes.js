@@ -17,3 +17,6 @@ export const PROFILE_ERROR="PROFILE_ERROR";
 export const LIST_LOADING="LIST_LOADING";
 export const LIST_SUCCESS="LIST_SUCCESS";
 export const LIST_ERROR="LIST_ERROR";
+
+//For Log out
+export const STAFF_LOGOUT="STAFF_LOGOUT";

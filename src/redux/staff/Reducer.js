@@ -1,5 +1,5 @@
 import { LIST_ERROR, LIST_LOADING, LIST_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS,
-   SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
+   SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STAFF_LOGOUT } from "./ActionTypes";
 
 const initialState = {
     login: {
@@ -145,7 +145,15 @@ switch (action.type) {
            error:true,
           },
   }; 
-   
+  
+  case STAFF_LOGOUT:
+     return{
+      ...state,
+      login:{
+        ...state.login,
+        staff_token:null,
+      }
+     }
     default:
         return { ...state };
     }

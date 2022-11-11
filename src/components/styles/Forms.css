@@ -116,7 +116,44 @@ input::-webkit-inner-spin-button {
     font-weight: 600;
     cursor: pointer;
 }
-@media only screen and (max-width: 768px){
+.register-form-select{
+    width:25.2vw;
+    height:2.3vw;
+    font-size: 1.25vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border:.5px solid #28a745;
+    border-radius: 2.5px;
+    outline: none;
+    color:#28a745;
+    cursor: pointer;
+}
+.register-form-select-alert{
+    width:25.2vw;
+    height:2.3vw;
+    font-size: 1vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border:.1.5px solid #ED4F32;
+    border-radius: 2.5px;
+    outline: none;
+    color:#ED4F32;
+    cursor: pointer;
+}
+.register-form-select-alert{
+    outline: none;
+    border:1.5px solid #ED4F32;
+}
+.register-form-select:focus{
+    outline: none;
+    border:1.5px solid #28a745;
+}
+
+@media only screen and (max-width: 769px){
     .form-input{
         width:40vw;
         height:2vw;
@@ -129,6 +166,35 @@ input::-webkit-inner-spin-button {
         border-radius: 2.5px;
         outline: none;
         color:#28a745;
+        cursor: pointer;
+    }
+    .register-form-select{
+        width:40vw;
+        height:2.3vw;
+        font-size: 1.25vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border:.5px solid #28a745;
+        border-radius: 2.5px;
+        outline: none;
+        color:#28a745;
+        cursor: pointer;
+    }
+
+    .register-form-select-alert{
+        width:40vw;
+        height:2.5vw;
+        font-size: 1vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border:.1.5px solid #ED4F32;
+        border-radius: 2.5px;
+        outline: none;
+        color:#ED4F32;
         cursor: pointer;
     }
 }
@@ -175,7 +241,7 @@ input::-webkit-inner-spin-button {
         cursor: pointer;
     }
     .register-form-select{
-        width:40vw;
+        width:50vw;
         height:2.5vw;
         font-size: 1.25vw;
         margin-left: auto;
@@ -186,6 +252,21 @@ input::-webkit-inner-spin-button {
         border-radius: 2.5px;
         outline: none;
         color:#28a745;
+        cursor: pointer;
+    }
+
+    .register-form-select-alert{
+        width:50vw;
+        height:2.5vw;
+        font-size: 1vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border:.1.5px solid #ED4F32;
+        border-radius: 2.5px;
+        outline: none;
+        color:#ED4F32;
         cursor: pointer;
     }
 }
@@ -202,40 +283,4 @@ input::-webkit-inner-spin-button {
     outline: none;
     color:#28a745;
     cursor: pointer;
-}
-.register-form-select{
-    width:25.2vw;
-    height:2.3vw;
-    font-size: 1.25vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border:.5px solid #28a745;
-    border-radius: 2.5px;
-    outline: none;
-    color:#28a745;
-    cursor: pointer;
-}
-.register-form-select-alert{
-    width:25.2vw;
-    height:2.3vw;
-    font-size: 1vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border:.1.5px solid #ED4F32;
-    border-radius: 2.5px;
-    outline: none;
-    color:#ED4F32;
-    cursor: pointer;
-}
-.register-form-select-alert{
-    outline: none;
-    border:1.5px solid #ED4F32;
-}
-.register-form-select:focus{
-    outline: none;
-    border:1.5px solid #28a745;
 }

@@ -1,12 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Staffnavbar from "./Staffnavbar"
 import '../styles/Profile.css'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { profileError, profileLoading, profileSuccess, staffLogout } from '../../redux/staff/Actions';
+import axios from 'axios';
 
 const Staffportal = () => {
+const token=JSON.parse(sessionStorage.staff_token);
+const navigate = useNavigate();
+let dispatch=useDispatch();
+
+const {data}=useSelector(state=>state.staff.profile)
+let info=data[0];
+
+let logout=()=>{
+sessionStorage.removeItem("staff_token");
+dispatch(staffLogout());
+navigate('/');
+}
+
+let getuser=()=>{
+dispatch(profileLoading())
+  axios({
+    method: "post",
+    url: 'http://localhost:8000/managerapi/getloggedinstaff/',
+    data:{
+      Email:token.Email,
+      Password:token.Password
+      }
+}).then((response)=>{
+  dispatch(profileSuccess(response.data));
+}).catch((error)=>{
+  dispatch(profileError());
+  let errmessage=error.response.data.Email;
+  alert("Error :"+errmessage);
+})
+}
+useEffect(()=>{
+  getuser();
+},[])
 
   return (
     <>
        <Staffnavbar/>
+       {data.map((el) => (<>
        <div className='profile-wrapper'>
        <h3 style={{color:"#28a745", textAlign:"center",fontSize:"2vw",padding:'0px',margin:'0px',fontWeight:"500"}}>Profile</h3>
           <div className='profile-main'>
@@ -16,24 +54,29 @@ const Staffportal = () => {
           <p className='profile-label'>Email</p>
 
           <p className='profile-label'>Staff ID</p>
+
+          <p className='profile-label'>Designation</p>
           </div>
           <div className="profile2">
 
-          <p className='profile-info'>Utsav Katiyar</p>
+          <p className='profile-info'>{el.Name}</p>
 
-          <p className='profile-info'>utsav.katiyar@livehealth.in</p>
+          <p className='profile-info'>{el.Email}</p>
 
-          <p className='profile-info'>436</p>
+          <p className='profile-info'>{el.Staff_id}</p>
+
+          <p className='profile-info'>{el.Designation}</p>
 
           </div>
           </div>
         <div style={{width:"fit-content",marginRight:"0px",marginLeft:"auto"}}>
         <button className='profile-button' >Edit</button>
-        <button className='profile-button' >Log Out</button>
+        <button className='profile-button' onClick={logout}>Log Out</button>
         </div>
        </div>
     </>
-  )
+    ))}
+ </> )
 }
 
 export default Staffportal

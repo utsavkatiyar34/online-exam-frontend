@@ -1,6 +1,6 @@
 //For login
 export const LOGIN_LOADING="LOGIN LOADING";
-export const LOGIN_SUCCESS="LOGIN_SUCCESS";
+export const LOGIN_STUDENT_SUCCESS="LOGIN_STUDENT_SUCCESS";
 export const LOGIN_ERROR="LOGIN_ERROR";
 
 //For Signup

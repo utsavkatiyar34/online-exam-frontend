@@ -120,7 +120,7 @@ let emailcheck= /\S+@\S+\.\S+/;
          />
 
          <p className='form-label'>Designation</p>
-         <select id="select" className='register-form-select' 
+         <select id="select" className="register-form-select" 
          type='text' value={designation} 
          onChange={(e=>{setDesignation(e.target.value)
           e.target.className="register-form-select" 

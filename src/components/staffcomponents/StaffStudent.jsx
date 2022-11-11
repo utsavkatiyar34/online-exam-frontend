@@ -7,8 +7,10 @@ import { listError, listLoading, listSuccess } from '../../redux/staff/Actions';
 import '../styles/Forms.css';
 import '../styles/Profile.css'
 
+
 const StaffStudent = () => {
 const dispatch=useDispatch();
+
 const {data}= useSelector(state=>state.staff.list);
 //fetch the student data
 let handlefetch=()=>{

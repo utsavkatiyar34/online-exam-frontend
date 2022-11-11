@@ -5,6 +5,7 @@ const StudentPortal = () => {
   return (
     <>
         <Studentnavbar/>
+        <div>Hi! Your Profile here.</div>
     </>
   )
 }
