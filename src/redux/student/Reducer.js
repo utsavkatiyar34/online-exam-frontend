@@ -1,4 +1,5 @@
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
+import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_LOADING,
+   PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT } from "./ActionTypes";
 
 const initialState = {
     login: {
@@ -108,6 +109,16 @@ switch (action.type) {
              error:true,
             },
     }; 
+
+    case STUDENT_LOGOUT:
+      return{
+        ...state,
+        login: {
+          ...state.login,
+          student_token:null,
+        },
+      };
+      
     default:
         return { ...state };
     }

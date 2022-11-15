@@ -20,6 +20,7 @@ dispatch(listLoading())
     url: 'http://localhost:8000/managerapi/student/',
 }).then((response)=>{
   dispatch(listSuccess(response.data));
+  // alert("Disabled successfully")
 }).catch((error)=>{
   dispatch(listError());
   let errmessage=error.response.data.Email;

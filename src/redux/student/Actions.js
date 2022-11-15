@@ -1,4 +1,5 @@
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS } from "./ActionTypes";
+import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_ERROR,
+   PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT } from "./ActionTypes";
 
 //For Signup
 export const signupLoading = () => {
@@ -58,4 +59,9 @@ export const loginLoading = () => {
     return {
         type: PROFILE_ERROR,
     }
-  }
+  };
+  export const studentLogout =() =>{
+    return {
+        type: STUDENT_LOGOUT,
+    }
+  };

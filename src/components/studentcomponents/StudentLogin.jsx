@@ -23,7 +23,7 @@ const StudentLogin = () => {
           data:{Email:email,
           Password:password}
       }).then((response)=>{
-        sessionStorage.setItem("student_token",response.data)
+        sessionStorage.setItem("student_token",JSON.stringify(response.data))
         dispatch(loginstudentSuccess(response.data));
         alert("Login Successful")
         navigate('/student/profile');

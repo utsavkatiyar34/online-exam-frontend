@@ -12,10 +12,10 @@ const navigate = useNavigate();
 let dispatch=useDispatch();
 
 const {data}=useSelector(state=>state.staff.profile)
-let info=data[0];
 
 let logout=()=>{
 sessionStorage.removeItem("staff_token");
+sessionStorage.removeItem("staffid");
 dispatch(staffLogout());
 navigate('/');
 }
@@ -30,6 +30,7 @@ dispatch(profileLoading())
       Password:token.Password
       }
 }).then((response)=>{
+  sessionStorage.setItem("staffid",JSON.stringify(response.data))
   dispatch(profileSuccess(response.data));
 }).catch((error)=>{
   dispatch(profileError());
@@ -70,7 +71,7 @@ useEffect(()=>{
           </div>
           </div>
         <div style={{width:"fit-content",marginRight:"0px",marginLeft:"auto"}}>
-        <button className='profile-button' >Edit</button>
+        <button className='profile-button' disabled>Edit</button>
         <button className='profile-button' onClick={logout}>Log Out</button>
         </div>
        </div>

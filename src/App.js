@@ -21,7 +21,7 @@ function App() {
 let staff_token1=sessionStorage.getItem("staff_token");
 let staff_token2=useSelector(state=>state.staff.login.staff_token);
 let student_token1=sessionStorage.getItem("student_token");
-let student_token2=useSelector(state=>state.staff.login.student_token);
+let student_token2=useSelector(state=>state.student.login.student_token);
   return (
     <>
     <Navbar/>
@@ -39,14 +39,14 @@ let student_token2=useSelector(state=>state.staff.login.student_token);
            <Route exact path='/staff/courses' element={<StaffCourse/>}></Route>
            <Route exact path='/staff/students' element={<StaffStudent/>}></Route>
            </>)}
-           {(student_token1||student_token2)? (<>
+           {(!student_token1&&!student_token2)? (<>
+           <Route exact path='/student/login' element={<StudentLogin/>}></Route>
+           <Route exact path='/student/register' element={<StudentRegister/>}></Route>
+           </>):
+           (<>
            <Route exact path='/student/subscriptions' element={<StudentSubscriptions/>}></Route>
            <Route exact path='/student/courses' element={<StudentCourses/>}></Route>
            <Route exact path='/student/profile' element={<StudentPortal/>}></Route>
-           </>):
-           (<>
-           <Route exact path='/student/login' element={<StudentLogin/>}></Route>
-           <Route exact path='/student/register' element={<StudentRegister/>}></Route>
            </>)}
       </Routes>
     </>

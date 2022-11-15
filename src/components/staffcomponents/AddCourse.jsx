@@ -1,13 +1,41 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addcourseError, addcourseLoading, addcourseSuccess } from '../../redux/staff/Actions';
 import Staffnavbar from "./Staffnavbar";
 
 const AddCourse = () => {
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
-  const[test,setTest]=useState("");
-  let testlist=[{id:"",name:""},{id:"1",name:"HTML"},{id:"2",name:"CSS"},{id:"3",name:"JavaScript"}]
-  let handleLogin=()=>{
-    alert(test);
+  const {data}=JSON.parse(sessionStorage.staffid);
+  let id=data[0].Staff_id;
+  let dispatch=useDispatch();
+  // const[test,setTest]=useState("");
+  // let testlist=[{id:"",name:""},{id:"1",name:"HTML"},{id:"2",name:"CSS"},{id:"3",name:"JavaScript"}]
+  let handleAction=()=>{
+   if(!email){
+    alert("Please Enter Course Name");
+   }
+   else if(password.length<500){
+    alert("Description can't be less then 500 characters");
+   }
+   else{
+    dispatch(addcourseLoading());
+    axios({
+      method:"post",
+      url:'http://localhost:8000/courseapi/course/',
+      data:{
+        Name:email,
+        Description:password,
+        Author:id,
+      }
+    }).then((response)=>{
+     dispatch(addcourseSuccess());
+    }).catch((error)=>{
+      alert(error);
+      dispatch(addcourseError());
+    })
+   }
   }
   return (
   <>
@@ -17,19 +45,9 @@ const AddCourse = () => {
          <p className='form-label'>Course Name</p>
          <input className='course-form-input' type='text' value={email} onChange={(event=>setEmail(event.target.value))}/>
          <p className='form-label'>Description</p>
-         <textarea rows = "5" className='course-form-textfield' placeholder="750 characters maximum...." type='password' value={password} onChange={(event=>setPassword(event.target.value))}/>
-         <p className='form-label'>Choose test</p>
-         <select placeholder="Begin typing a name to filter..." className='course-form-select' type='text' value={test} onChange={(event=>setTest(event.target.value))}>
-        
-        {/* list of the avaliable tests */}
+         <textarea rows = "7" className='course-form-textfield' placeholder="2000 characters maximum...." type='text' value={password} onChange={(event=>setPassword(event.target.value))}/>
 
-           {testlist.map((element) => (<>
-           <option key={element.id}>{element.name}</option>
-           </>))}
-
-
-         </select>
-         <button className='form-button' onClick={handleLogin}>Create</button>
+         <button className='form-button' onClick={handleAction}>Create</button>
     </div>
   </>
   )

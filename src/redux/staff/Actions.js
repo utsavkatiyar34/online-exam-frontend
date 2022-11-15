@@ -1,5 +1,18 @@
-import { LIST_ERROR, LIST_LOADING, LIST_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_SUCCESS, 
-  PROFILE_ERROR, PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STAFF_LOGOUT } from "./ActionTypes";
+import { ADD_COURSE_ERROR, ADD_COURSE_LOADING, ADD_COURSE_SUCCESS, ADD_TEST_ERROR, ADD_TEST_LOADING,
+  ADD_TEST_SUCCESS, 
+  GET_COURSE_ERROR, 
+  GET_COURSE_LOADING, 
+  GET_COURSE_SUCCESS, 
+  GET_TEST_ERROR, 
+  GET_TEST_LOADING, 
+  GET_TEST_SUCCESS, 
+  LIST_ERROR, LIST_LOADING, 
+  LIST_SUCCESS, LOGIN_ERROR,
+  LOGIN_LOADING, LOGIN_SUCCESS, 
+  PROFILE_ERROR, PROFILE_LOADING,
+  PROFILE_SUCCESS, SIGNUP_ERROR,
+  SIGNUP_LOADING, SIGNUP_SUCCESS,
+  STAFF_LOGOUT } from "./ActionTypes";
 
 //For Signup
 export const signupLoading = () => {
@@ -59,8 +72,44 @@ export const loginLoading = () => {
     return {
         type: PROFILE_ERROR,
     }
-  }
+  };
 
+  //To add course
+  export const addcourseLoading = () =>{
+    return {
+       type: ADD_COURSE_LOADING,
+    }
+  };
+
+  export const addcourseSuccess = () =>{
+    return {
+       type: ADD_COURSE_SUCCESS,
+    }
+  };
+
+  export const addcourseError = () =>{
+    return {
+        type: ADD_COURSE_ERROR,
+    }
+  };
+  //To get course
+  export const getcourseLoading = () =>{
+    return {
+       type: GET_COURSE_LOADING,
+    }
+  };
+  export const getcourseSuccess = (payload) =>{
+    return {
+       type: GET_COURSE_SUCCESS,
+       payload,
+    }
+  };
+
+  export const getcourseError = () =>{
+    return {
+        type: GET_COURSE_ERROR   
+      }
+  };
   //To fetch list of all students
   export const listLoading = () =>{
     return {
@@ -79,9 +128,46 @@ export const loginLoading = () => {
     return {
         type: LIST_ERROR,
     }
+  };
+//to add tests
+export const addtestLoading = () =>{
+  return {
+     type: ADD_TEST_LOADING,
   }
+};
+
+export const addtestSuccess = () =>{
+  return {
+     type: ADD_TEST_SUCCESS,
+  }
+};
+
+export const addtestError = () =>{
+  return {
+      type: ADD_TEST_ERROR,
+  }
+};
+
+export const gettestLoading = () =>{
+  return {
+     type: GET_TEST_LOADING,
+  }
+};
+
+export const gettestSuccess = (payload) =>{
+  return {
+     type: GET_TEST_SUCCESS,
+     payload
+  }
+};
+
+export const gettestError = () =>{
+  return {
+      type: GET_TEST_ERROR,
+  }
+};
   export const staffLogout = () =>{
     return {
         type: STAFF_LOGOUT,
     }
-  }
+  };
