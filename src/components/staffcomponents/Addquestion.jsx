@@ -21,30 +21,46 @@ const style = {
   p: 4,
 };
 
-export default function Addquestion({course_id, name}) {
+export default function Addquestion({Test_id, name}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [tname, setTname]=React.useState("");
+  const [question, setQuestion]=React.useState("");
+  const [op1,setOp1]=React.useState("");
+  const [op2,setOp2]=React.useState("");
+  const [op3,setOp3]=React.useState("");
+  const [op4,setOp4]=React.useState("");
+  const [corr,setCorr]=React.useState("");
+
   let dispatch=useDispatch();
-  let addTest=()=>{
- if(!tname){
-    alert("Please enter Name.")
+  let addques=()=>{
+ if(!question){
+    alert("Please enter question.")
+ }
+ else if(!op1||!op2||!op3||!op4||!corr){
+    alert("Please fill all the fields")
+ }
+ else if(corr!==op1&&corr!==op2&&corr!==op3&&corr!==op4){
+    alert("Correct ans should be in options.")
  }
  else{
-    dispatch(addtestLoading());
     axios({
         method:"post",
-        url:"http://localhost:8000/courseapi/test/",
+        url:"http://localhost:8000/courseapi/question/",
         data:{
-            Test_name:tname,
-            Course:course_id
+            Test:Test_id,
+            Question:question,
+            Option1:op1,
+            Option2:op2,
+            Option3:op3,
+            Option4:op4,
+            Correct_Ans:corr,
         }
     }).then((response)=>{
-          dispatch(addtestSuccess());
+          alert(`Question added successfully to ${name}`)
+          handleClose();
     }).catch((error)=>{
            console.log(error);
-           dispatch(addtestError());
     })
  }
 }
@@ -60,28 +76,35 @@ export default function Addquestion({course_id, name}) {
         <Box sx={style}>
          <h3 style={{color:"#28a745",fontSize:"2vw",fontWeight:"400",textAlign:"center"}}>Add Question for {name}</h3>
          <p className='form-label'>Question</p>
-         <textarea rows = "3" className='course-form-textfield' placeholder="500 characters maximum...." type='text'/>
-         <input id="email" className='course-form-input'
+         <textarea rows = "3" className='course-form-textfield' placeholder="500 characters maximum...." type='text'
+         value={question} onChange={(e)=>setQuestion(e.target.value)}
+         />
+         <input className='course-form-input'
           style={{marginLeft:"auto",marginRight:"auto"}} type='text'
           placeholder='Opton 1...'
+          value={op1} onChange={(e)=>setOp1(e.target.value)}
           />
           <input id="email" className='course-form-input'
           style={{marginLeft:"auto",marginRight:"auto"}} type='text'
           placeholder='Opton 2...'
+          value={op2} onChange={(e)=>setOp2(e.target.value)}
           />
           <input id="email" className='course-form-input'
           style={{marginLeft:"auto",marginRight:"auto"}} type='text'
           placeholder='Opton 3...'
+          value={op3} onChange={(e)=>setOp3(e.target.value)}
           />
           <input id="email" className='course-form-input'
           style={{marginLeft:"auto",marginRight:"auto"}} type='text'
           placeholder='Opton 4...'
+          value={op4} onChange={(e)=>setOp4(e.target.value)}
           />
           <input id="email" className='course-form-input'
           style={{marginLeft:"auto",marginRight:"auto"}} type='text'
           placeholder='Correct answer'
+          value={corr} onChange={(e)=>setCorr(e.target.value)}
           />
-         <button className='form-button' onClick={addTest}>Add</button>
+         <button className='form-button' onClick={addques}>Add</button>
         </Box>
       </Modal>
     </div>
