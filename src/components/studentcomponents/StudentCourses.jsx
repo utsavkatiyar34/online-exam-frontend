@@ -1,19 +1,62 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getcourseError, getcourseLoading, getcourseSuccess,profileError, profileLoading, profileSuccess} from '../../redux/student/Actions'
 import StudentCourseCard from './StudentCourseCard'
 import Studentnavbar from './Studentnavbar'
 
 const StudentCourses = () => {
-  let courses=[{name:"Web Development Course",
-  description:"in hac habitasse platea dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra aliquet eget sit amet tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut"}
-  ,{name:"Backend Course with python and Django",
-  description:"in hac habitasse platea dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra aliquet eget sit amet tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut"}]
+  const {datacourse}=useSelector((state)=>state.student.cources);
+  const token=JSON.parse(sessionStorage.student_token);
+  const {data}=useSelector(state=>state.student.profile);
+
+//_____________________________________________________________________________
+  let dispatch=useDispatch();
+  let getcources=()=>{
+    dispatch(getcourseLoading());
+      axios({
+        method: "get",
+        url: 'http://localhost:8000/courseapi/course/',
+    }).then((response)=>{
+      
+      dispatch(getcourseSuccess(response.data));
+    }).catch((error)=>{
+      dispatch(getcourseError());
+      alert("Error :"+error);
+    })
+    }
+//_____________________________________________________________________________
+    let getuser=()=>{
+      dispatch(profileLoading())
+        axios({
+          method: "post",
+          url: 'http://localhost:8000/managerapi/getloggedinstudent/',
+          data:{
+            Email:token.Email,
+            Password:token.Password
+            }
+      }).then((response)=>{
+        dispatch(profileSuccess(response.data));
+        getcources();
+      }).catch((error)=>{
+        dispatch(profileError());
+        let errmessage=error.response.data.Email;
+        alert("Error :"+errmessage);
+      })
+      } 
+//_____________________________________________________________________________
+    useEffect(()=>{
+    getuser();
+    },[])
+
+
   return (
     <>
       <Studentnavbar/>    
       <h3 style={{color:"#28a745", textAlign:"center",fontSize:"2vw",padding:'0px',marginTop:'2vw',fontWeight:"600"}}>All Courses</h3>
-      {courses.map((element) => (<>
-        <StudentCourseCard key={element.name} {...element}/>
-      </>))}
+      {datacourse?(<>{datacourse.map((element) => (<>
+        <StudentCourseCard key={element.Course_id} {...element} student={data[0].Student_id}/>
+      </>))}</>):(<></>)}
     </>
   )
 }

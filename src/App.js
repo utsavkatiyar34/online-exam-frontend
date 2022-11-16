@@ -17,6 +17,8 @@ import Staffnavbar from './components/staffcomponents/Staffnavbar'
 import Home from './components/Home';
 import { useSelector } from 'react-redux';
 import Studentnavbar from './components/studentcomponents/Studentnavbar';
+import Tests from './components/studentcomponents/Tests';
+import TakeTest from './components/studentcomponents/TakeTest';
 function App() {
 let staff_token1=sessionStorage.getItem("staff_token");
 let staff_token2=useSelector(state=>state.staff.login.staff_token);
@@ -30,7 +32,7 @@ let student_token2=useSelector(state=>state.student.login.student_token);
            <Route exact path='/staff' element={<Staffnavbar/>}></Route>
            <Route exact path='/student' element={<Studentnavbar/>}></Route>
            {(!staff_token1 && !staff_token2)? (<>
-            <Route exact path='/staff/login' element={<Stafflogin/>}></Route>
+           <Route exact path='/staff/login' element={<Stafflogin/>}></Route>
            <Route exact path='/staff/register' element={<StaffRegister/>}></Route>
            </>):
            (<>
@@ -47,6 +49,8 @@ let student_token2=useSelector(state=>state.student.login.student_token);
            <Route exact path='/student/subscriptions' element={<StudentSubscriptions/>}></Route>
            <Route exact path='/student/courses' element={<StudentCourses/>}></Route>
            <Route exact path='/student/profile' element={<StudentPortal/>}></Route>
+           <Route exact path='/student/test/:id' element={<Tests/>}></Route>
+           <Route exact path='/student/taketest/:testid' element={<TakeTest/>}></Route>
            </>)}
       </Routes>
     </>

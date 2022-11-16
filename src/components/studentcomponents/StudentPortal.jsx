@@ -42,8 +42,8 @@ let logout=()=>{
   return (
     <>
         <Studentnavbar/>
-        {data.map((el) => (<>
-       <div className='profile-wrapper'>
+      {data.map((el) => (<>
+       <div className='profile-wrapper' key={el.Student_id}>
        <h3 style={{color:"#28a745", textAlign:"center",fontSize:"2vw",padding:'0px',margin:'0px',fontWeight:"500"}}>Profile</h3>
           <div className='profile-main'>
           <div className="profile">
@@ -68,7 +68,7 @@ let logout=()=>{
           </div>
           </div>
         <div style={{width:"fit-content",marginRight:"0px",marginLeft:"auto"}}>
-        <button className='profile-button' diabled>Edit</button>
+        {/* <button className='profile-button' diabled>Edit</button> */}
         <button className='profile-button' onClick={logout}>Log Out</button>
         </div>
        </div>

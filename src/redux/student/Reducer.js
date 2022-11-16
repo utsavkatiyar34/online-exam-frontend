@@ -1,5 +1,5 @@
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_LOADING,
-   PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT } from "./ActionTypes";
+import { GET_COURSE_ERROR, GET_COURSE_LOADING, GET_COURSE_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_ERROR, PROFILE_LOADING,
+   PROFILE_SUCCESS, QUESTIONS_ERROR, QUESTIONS_LOADING, QUESTIONS_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT, SUBSCRIPTIONS_ERROR, SUBSCRIPTIONS_LOADING, SUBSCRIPTIONS_SUCCESS, TESTS_ERROR, TESTS_LOADING, TESTS_SUCCESS } from "./ActionTypes";
 
 const initialState = {
     login: {
@@ -16,6 +16,26 @@ const initialState = {
       error: false,
       data: [],
     },
+    cources:{
+      lodaing:false,
+      error:false,
+      datacourse:null,
+    },
+    subscriptions:{
+      loading:false,
+      error:false,
+      subs:[]
+    },
+    tests:{
+      loading:false,
+      error:false,
+      testlist:null
+    },
+    questions:{
+      loading:false,
+      error:false,
+      qlist:null
+    }
   };
 
 export const reducer = (state = initialState, action) => {
@@ -100,7 +120,7 @@ switch (action.type) {
           },
     };
 
-    case LOGIN_ERROR:
+    case PROFILE_ERROR:
         return{
             ...state,
             profile: { 
@@ -109,7 +129,121 @@ switch (action.type) {
              error:true,
             },
     }; 
+    case GET_COURSE_LOADING:
+      return{
+          ...state,
+          cources: { 
+           ...state.cources,
+           loading:true,
+           error:false,
+          },
+  };
+  case GET_COURSE_SUCCESS:
+    return{
+        ...state,
+        cources: { 
+         ...state.cources,
+         loading:false,
+         error:false,
+         datacourse:action.payload,
+        },
+};
+case GET_COURSE_ERROR:
+  return{
+      ...state,
+      cources: { 
+       ...state.cources,
+       loading:false,
+       error:true,
+      },
+};
+case SUBSCRIPTIONS_LOADING:
+  return{
+      ...state,
+      subscriptions: { 
+       ...state.subscriptions,
+       loading:true,
+       error:false,
+      },
+};
+case SUBSCRIPTIONS_SUCCESS:
+return{
+    ...state,
+    subscriptions: { 
+     ...state.subscriptions,
+     loading:false,
+     error:false,
+     subs:action.payload
+    },
+};
+case SUBSCRIPTIONS_ERROR:
+return{
+  ...state,
+  subscriptions: { 
+   ...state.subscriptions,
+   loading:false,
+   error:true,
+  },
+};
 
+case TESTS_LOADING:
+  return{
+      ...state,
+      tests: { 
+       ...state.tests,
+       loading:true,
+       error:false,
+      },
+};
+
+case TESTS_SUCCESS:
+  return{
+      ...state,
+      tests: { 
+       ...state.tests,
+       loading:false,
+       error:false,
+       testlist:action.payload
+      },
+};
+case TESTS_ERROR:
+  return{
+      ...state,
+      tests: { 
+       ...state.tests,
+       loading:false,
+       error:true,
+      },
+};
+
+case QUESTIONS_LOADING:
+  return{
+      ...state,
+      questions: { 
+       ...state.questions,
+       loading:true,
+       error:false,
+      },
+};
+case QUESTIONS_SUCCESS:
+  return{
+      ...state,
+      questions: { 
+       ...state.questions,
+       loading:false,
+       error:false,
+       qlist:action.payload
+      },
+};
+case QUESTIONS_ERROR:
+  return{
+      ...state,
+      questions: { 
+       ...state.questions,
+       loading:false,
+       error:true,
+      },
+};
     case STUDENT_LOGOUT:
       return{
         ...state,

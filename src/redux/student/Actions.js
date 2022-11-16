@@ -1,5 +1,5 @@
-import { LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_ERROR,
-   PROFILE_LOADING, PROFILE_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT } from "./ActionTypes";
+import { GET_COURSE_ERROR, GET_COURSE_LOADING, GET_COURSE_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_ERROR,
+   PROFILE_LOADING, PROFILE_SUCCESS, QUESTIONS_ERROR, QUESTIONS_LOADING, QUESTIONS_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT, SUBSCRIPTIONS_ERROR, SUBSCRIPTIONS_LOADING, SUBSCRIPTIONS_SUCCESS, TESTS_ERROR, TESTS_LOADING, TESTS_SUCCESS } from "./ActionTypes";
 
 //For Signup
 export const signupLoading = () => {
@@ -65,3 +65,77 @@ export const loginLoading = () => {
         type: STUDENT_LOGOUT,
     }
   };
+
+  export const getcourseLoading=()=>{
+     return {
+      type:GET_COURSE_LOADING,
+     }
+  };
+  export const getcourseSuccess=(payload)=>{
+    return {
+     type:GET_COURSE_SUCCESS,
+     payload,
+    }
+ };
+export const getcourseError=()=>{
+      return{
+        type:GET_COURSE_ERROR,
+      }
+};
+
+export const subscriptionLoading = () =>{
+  return {
+     type: SUBSCRIPTIONS_LOADING,
+  }
+};
+
+export const subscriptionSuccess = (payload) =>{
+  return {
+     type: SUBSCRIPTIONS_SUCCESS,
+     payload,
+  }
+};
+
+export const subscriptionError = () =>{
+  return {
+      type: SUBSCRIPTIONS_ERROR,
+  }
+};
+
+export const testLoading = () =>{
+  return {
+     type: TESTS_LOADING,
+  }
+};
+
+export const testSuccess = (payload) =>{
+  return {
+     type: TESTS_SUCCESS,
+     payload,
+  }
+};
+
+export const testError = () =>{
+  return {
+      type: TESTS_ERROR,
+  }
+};
+
+export const questionLoading = () =>{
+  return {
+     type: QUESTIONS_LOADING,
+  }
+};
+
+export const questionSuccess = (payload) =>{
+  return {
+     type: QUESTIONS_SUCCESS,
+     payload,
+  }
+};
+
+export const questionError = () =>{
+  return {
+      type: QUESTIONS_ERROR,
+  }
+};
