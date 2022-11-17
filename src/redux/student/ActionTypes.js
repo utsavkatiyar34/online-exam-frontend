@@ -29,5 +29,7 @@ export const TESTS_ERROR="TESTS_ERROR";
 export const QUESTIONS_LOADING= "QUESTIONS_LOADING";
 export const QUESTIONS_SUCCESS= "QUESTIONS_SUCCESS";
 export const QUESTIONS_ERROR= "QUESTIONS_ERROR";
+
+export const SCORE="SCORE";
 //Student Logout
 export const STUDENT_LOGOUT="STUDENT_LOGOUT";

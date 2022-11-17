@@ -1,5 +1,5 @@
 import { GET_COURSE_ERROR, GET_COURSE_LOADING, GET_COURSE_SUCCESS, LOGIN_ERROR, LOGIN_LOADING, LOGIN_STUDENT_SUCCESS, PROFILE_ERROR, PROFILE_LOADING,
-   PROFILE_SUCCESS, QUESTIONS_ERROR, QUESTIONS_LOADING, QUESTIONS_SUCCESS, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT, SUBSCRIPTIONS_ERROR, SUBSCRIPTIONS_LOADING, SUBSCRIPTIONS_SUCCESS, TESTS_ERROR, TESTS_LOADING, TESTS_SUCCESS } from "./ActionTypes";
+   PROFILE_SUCCESS, QUESTIONS_ERROR, QUESTIONS_LOADING, QUESTIONS_SUCCESS, SCORE, SIGNUP_ERROR, SIGNUP_LOADING, SIGNUP_SUCCESS, STUDENT_LOGOUT, SUBSCRIPTIONS_ERROR, SUBSCRIPTIONS_LOADING, SUBSCRIPTIONS_SUCCESS, TESTS_ERROR, TESTS_LOADING, TESTS_SUCCESS } from "./ActionTypes";
 
 const initialState = {
     login: {
@@ -35,11 +35,22 @@ const initialState = {
       loading:false,
       error:false,
       qlist:null
+    },
+    scores:{
+      score:0
     }
   };
 
 export const reducer = (state = initialState, action) => {
 switch (action.type) {
+    case SCORE:
+      return{
+        ...state,
+        scores:{
+          ...state.scores,
+          score:action.payload
+        }
+      };
 //Staff Signup
     case SIGNUP_LOADING:
         return {
