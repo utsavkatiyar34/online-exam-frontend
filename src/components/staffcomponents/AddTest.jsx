@@ -42,6 +42,8 @@ export default function AddTest({course_id, name}) {
         }
     }).then((response)=>{
           dispatch(addtestSuccess());
+          alert(`Course successfully added to ${name}`);
+          handleClose();
     }).catch((error)=>{
            console.log(error);
            dispatch(addtestError());

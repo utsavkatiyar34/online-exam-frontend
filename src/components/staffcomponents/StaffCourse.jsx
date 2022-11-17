@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getcourseError, getcourseLoading, getcourseSuccess, gettestLoading, gettestSuccess } from '../../redux/staff/Actions';
+import { getcourseError, getcourseLoading, getcourseSuccess, gettestError, gettestLoading, gettestSuccess } from '../../redux/staff/Actions';
 import AddTest from './AddTest';
 import Staffnavbar from './Staffnavbar'
 import '../styles/Forms.css';
@@ -46,10 +46,10 @@ let id=data[0].Staff_id;
     }
     useEffect(()=>{
       handlefetch();
-      getcourse();
+      getTest();
     },[])
 
-  let getcourse=()=>{
+  let getTest=()=>{
      dispatch(gettestLoading());
      axios({
       method:"get",
@@ -58,6 +58,7 @@ let id=data[0].Staff_id;
       // console.log(response.data)
       dispatch(gettestSuccess(response.data));
      }).catch((error)=>{
+      dispatch(gettestError());
       console.log(error);
      })
   }
@@ -84,7 +85,7 @@ let id=data[0].Staff_id;
         <p className='profile-info'><b>Test Name :</b> {ele.Test_name}</p>
         {/* <p className='profile-info'><b>Description :</b> {ele.Test_name}</p> */}
         <div style={{width:"fit-content",marginRight:"10px",marginLeft:"auto",marginTop:'0px',marginBottom:'0px'}}>
-        <Addquestion Test_id={ele.Test_id} name={ele.Test_name}/>
+        <Addquestion Test_id={ele.Test_id} name={ele.Test_name} />
         </div>
         </div>))}
       </div>):(<></>)}

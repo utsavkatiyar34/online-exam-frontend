@@ -7,22 +7,28 @@ import Subscribedcard from './Subscribedcard';
 
 const StudentSubscriptions = () => {
   const token=JSON.parse(sessionStorage.student_token);
-  const [array,setArray] = useState([]);
+  // const [array,setArray] = useState([]);
+  let subsarray=[];
   const {subs}=useSelector(state=>state.student.subscriptions);
   let dispatch=useDispatch();
+
 //_____________________________________________________________________________
+
 //_____________________________________________________________________________
   let getsubs=(x)=>{
-    dispatch(subscriptionLoading())
+    dispatch(subscriptionLoading());
     axios({
       method:"get",
       url:`http://localhost:8000/courseapi/course/${x}/`,
     }).then((res)=>{
-      setArray(prev => [res.data,...prev]);
-      dispatch(subscriptionSuccess(res.data));
+      subsarray.push(res.data);
+      // console.log(res.data);
+      // setArray(prev => [re.log(res.datas.data,...prev]);
+      dispatch(subscriptionSuccess(subsarray));
     }).catch((err)=>{
       dispatch(subscriptionError());
     })
+   
   }
 
 //_____________________________________________________________________________
@@ -60,14 +66,20 @@ const StudentSubscriptions = () => {
     })
     }
 //_____________________________________________________________________________
-    useEffect(()=>{
-      getuser();
-    },[])
+
+    useEffect(() => {
+      subsarray=[]
+      dispatch(subscriptionSuccess(subsarray));
+      return () => {
+        getuser();
+      }
+    }, [])
+    
   return (
     <>
     <Studentnavbar/>
     <h3 style={{color:"#28a745", textAlign:"center",fontSize:"1.5vw",padding:'0px',marginTop:'2vw',fontWeight:"500"}}>Your Subscriptions</h3>
-    {array.map((ele)=>(
+    {subs.map((ele)=>(
       <Subscribedcard {...ele}/>
     ))}
     </>

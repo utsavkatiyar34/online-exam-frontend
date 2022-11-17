@@ -13,16 +13,17 @@ const TakeTest = () => {
     const token=JSON.parse(sessionStorage.student_token);
     const {data}=useSelector(state=>state.student.profile)
     let dispatch=useDispatch();
-
-    let submit=()=>{
+    let usableid=data[0].Student_id;
+    let testid=Number(test.testid)
+       let submit=()=>{
       console.log(score);
       axios({
         method:"post",
         url:"http://localhost:8000/courseapi/score/",
         data:{
           Score:score,
-          Test_id:Number(test.testid),
-          Student_id:data[0].Student_id
+          Test_id:testid,
+          Student_id:usableid
         }
     }).then((res)=>{
       alert("Submitted Successfully");
