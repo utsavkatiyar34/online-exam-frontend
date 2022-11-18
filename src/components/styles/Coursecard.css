@@ -43,3 +43,9 @@
     font-weight: 600;
     cursor: pointer;
 }
+.card-button:focus{
+    background-color: #28a745;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}

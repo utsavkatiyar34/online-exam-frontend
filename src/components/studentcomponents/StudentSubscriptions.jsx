@@ -7,7 +7,6 @@ import Subscribedcard from './Subscribedcard';
 
 const StudentSubscriptions = () => {
   const token=JSON.parse(sessionStorage.student_token);
-  // const [array,setArray] = useState([]);
   let subsarray=[];
   const {subs}=useSelector(state=>state.student.subscriptions);
   let dispatch=useDispatch();
@@ -22,8 +21,6 @@ const StudentSubscriptions = () => {
       url:`http://localhost:8000/courseapi/course/${x}/`,
     }).then((res)=>{
       subsarray.push(res.data);
-      // console.log(res.data);
-      // setArray(prev => [re.log(res.datas.data,...prev]);
       dispatch(subscriptionSuccess(subsarray));
     }).catch((err)=>{
       dispatch(subscriptionError());
